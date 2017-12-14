@@ -1,0 +1,16 @@
+<div class="signup-page">
+  <h1>Sign up</h1>
+  <h2>Choose your role</h2>
+  <span id="role-slider"><span class="chosen-role">Individual</span><span  data-for="individual" class="active-role role">Individual</span><span class="role" data-for="organization">Organization</span></span>
+  <ul class="form-container">
+    <li id="individual-form-container" class="active-form-container"><%= render 'sign_up/individual_form', predefined_email: request.GET[:email], coupon: request.GET[:coupon] %></li>
+    <li id="organization-form-container"><%= render 'sign_up/organization_form' , predefined_email: request.GET[:email], coupon: request.GET[:coupon]%></li>
+
+  </ul>
+  <script>
+    $(document).on('submit', '#new_user', function(){
+      $('.actions').after('<span> Thanks for registration. Now check your email for confirmation instructions </span>');
+
+    })
+  </script>
+</div>

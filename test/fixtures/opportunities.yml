@@ -1,0 +1,47 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  organization: MyString
+  opportunity_type: 1
+  short_description: MyText
+  country: MyString
+  city: MyString
+  deadline: 2015-12-12 22:57:16
+  age_min: 1
+  age_max: 1
+  residency: MyString
+  nationality: MyString
+  education: 1
+  cost: 1
+  language: MyString
+  long_description: MyText
+  requirements_to_apply: MyText
+  award: MyText
+  limitations: MyText
+  preferences: MyText
+  website: MyString
+  link_to_apply: MyString
+
+two:
+  name: MyString
+  organization: MyString
+  opportunity_type: 1
+  short_description: MyText
+  country: MyString
+  city: MyString
+  deadline: 2015-12-12 22:57:16
+  age_min: 1
+  age_max: 1
+  residency: MyString
+  nationality: MyString
+  education: 1
+  cost: 1
+  language: MyString
+  long_description: MyText
+  requirements_to_apply: MyText
+  award: MyText
+  limitations: MyText
+  preferences: MyText
+  website: MyString
+  link_to_apply: MyString

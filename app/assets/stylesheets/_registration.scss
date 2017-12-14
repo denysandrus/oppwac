@@ -1,0 +1,94 @@
+#organization-form-container {
+  display: none;
+}
+
+.signup-page {
+  max-width: 320px;
+  padding: 10px 20px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0 auto;
+  text-align: center;
+  a {
+    line-height: 24px;
+  }
+  h1 {
+    text-transform: uppercase;
+    font-size: 32px;
+
+  }
+  h2 {
+    font-weight: 300;
+    font-size: 18px;
+  }
+  #role-slider {
+    display: block;
+    width: 100%;
+    margin: 15px auto 9px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    overflow: hidden;
+    padding: 3px;
+    border-radius: 8px;
+    background-color: rgba(#000, .2);
+    position: relative;
+    span {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      cursor: pointer;
+      float: left;
+      width: 50%;
+      border-radius: 8px;
+      padding: 5px 0;
+    }
+    .chosen-role {
+      position: absolute;
+      width: 50%;
+      left: 3px;
+      top: 3px;
+      background: #fff;
+      color: #3D3E54;
+      transition: left .65s ease;
+      pointer-events: none;
+    }
+  }
+
+  input, select, textarea {
+    width: 100%;
+    display: block;
+    margin: 10px 0;
+    border-radius: 8px;
+    background: rgba(#fff, .2);
+    color: #282937;
+    border: none;
+    padding: 8px 10px;
+    &:focus, &:active {
+      outline: none;
+    }
+  }
+  input[type=checkbox] {
+    display: inline-block;
+    width: auto;
+  }
+  textarea {
+    height: 120px;
+    resize: none;
+  }
+  input[type=submit] {
+    background: #fff;
+
+    transition: all .9s ease;
+    color: #3D3E54;
+    &:hover {
+      transition: all .9s ease;
+      box-shadow: 1px 1px 2px #ededed,
+      -1px 1px 2px #ededed,
+      1px -1px 2px #ededed,
+      -1px -1px 2px #ededed;
+    }
+  }
+
+}

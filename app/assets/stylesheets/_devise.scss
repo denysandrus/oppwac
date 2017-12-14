@@ -1,0 +1,176 @@
+body > .container {
+  & {
+    padding-top: 80px;
+  }
+  h1, h2 {
+    font: 400 35px 'Fredoka One', cursive;
+  }
+
+  .notice { // TODO: this needs to be refactored since it's too global
+    strong {
+      display: inline-block;
+      margin-top: 15px;
+    }
+    p {
+      display: inline-block;
+      font-size: 12px;
+      color: #B5B5B5;
+      border-radius: 8px;
+    }
+    img {
+      border-radius: 100%;
+      border: 5px solid white;
+    }
+    a {
+      margin-top: 10px;
+    }
+  }
+  .edit_opportunity, .new_opportunity {
+    padding-bottom: 40px;
+    input, select, textarea {
+      padding: 10px;
+      width: 295px;
+      font-size: 12px;
+      color: #B5B5B5;
+      border: none;
+      border-radius: 8px;
+      background-color: rgba(255, 255, 255, 0.05);
+      &:focus {
+        outline: none;
+        background-color: rgba(0, 0, 0, 0.15);
+      }
+    }
+    textarea {
+      height: 100px;
+    }
+    #opportunity_deadline_1i,
+    #opportunity_deadline_2i,
+    #opportunity_deadline_3i,
+    #opportunity_deadline_4i,
+    #opportunity_deadline_5i {
+      width: auto;
+    }
+  }
+  form {
+    &.short-user-info {
+      input, select, textarea {
+        display: block;
+        padding: 5px 15px;
+        width: 250px;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        background-color: rgba(255, 255, 255, 0.05);
+        &:focus {
+          outline: none;
+          background-color: rgba(0, 0, 0, 0.15);
+        }
+        @media screen and(max-width: 768px) {
+          margin: 10px auto;
+          text-align: center;
+        }
+      }
+      input[type="radio"] {
+        margin-bottom: 6px;
+        display: inline-block;
+        width: 10px;
+        &:not(:last-child) {
+          margin-left: 20px;
+        }
+      }
+      input[type="submit"] {
+        margin: 10px 0;
+        padding: 5px 20px;
+        font: 600 16px 'Fredoka One', cursive;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        background-color: #3D3E54;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        cursor: pointer;
+        @include transition(all, .3s, ease);
+        &:hover {
+          -webkit-transform: translateY(-3px);
+          -ms-transform: translateY(-3px);
+          transform: translateY(-3px);
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        @media screen and(max-width: 768px) {
+          margin: 10px auto;
+        }
+      }
+    }
+    &.edit_user {
+      float: left;
+      margin-right: 50px;
+
+      #user_password_confirmation {
+        margin-bottom: 0;
+      }
+      #user_current_password {
+        margin-bottom: 10px;
+      }
+    }
+    label {
+      margin: 15px 0 3px 9px;
+    }
+    i {
+      display: block;
+      margin: 0 0 5px 10px;
+      font-size: 10px;
+      line-height: 10px;
+      opacity: .2;
+    }
+    input[type="checkbox"] {
+      margin: 0;
+    }
+    input[type="text"], input[type="password"], input[type="email"] {
+      display: block;
+      padding: 5px 15px;
+      width: 200px;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      background-color: rgba(255, 255, 255, 0.05);
+      &:focus {
+        outline: none;
+        background-color: rgba(0, 0, 0, 0.15);
+      }
+    }
+    #user_password_confirmation {
+      margin-bottom: 10px;
+    }
+    input[type="submit"] {
+      margin: 10px 0;
+      padding: 5px 20px;
+      font: 600 16px 'Fredoka One', cursive;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      background-color: #3D3E54;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      cursor: pointer;
+      @include transition(all, .3s, ease);
+      &:hover {
+        -webkit-transform: translateY(-3px);
+        -ms-transform: translateY(-3px);
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      }
+    }
+  }
+  .user-image-change {
+    display: block;
+    width: 120px;
+    border: 3px solid white;
+    border-radius: 100%;
+  }
+  .cancel-account {
+    margin-top: 24px;
+    h3 {
+      font: 400 24px 'Fredoka One', cursive;
+    }
+  }
+}

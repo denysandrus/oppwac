@@ -1,0 +1,155 @@
+<p id="notice"><%= notice %></p>
+<div class="opp-page-container">
+
+  <div class="opportunity-img">
+    <div class="rotate-planet-big"></div>
+    <div class="rotate-planet-small"></div>
+    <% if @opportunity.deadline.present? %>
+        <div class="notice deadline-notice">
+          <p><strong>Deadline: </strong><%= @opportunity.deadline %></p>
+        </div>
+    <% end %>
+    <% if @opportunity.opportunity_type.present? %>
+        <div class="opp-type">
+          <%= @opportunity.opportunity_type %>
+        </div>
+    <% end %>
+
+    <div class="image opp-image-tag" style="background-image: url(<%= image_path(@opportunity.picture_url) %>);">
+      <%# image_tag(@opportunity.picture_url, :id => "opportunity_image") if @opportunity.picture.present? %>
+    </div>
+  </div>
+
+
+
+
+
+  <div class="notice">
+    <h1><%= @opportunity.name %></h1>
+  </div>
+  <% if @opportunity.organization.present? %>
+      <div class="notice opp-org-notice">
+        <p> <strong>Organization: </strong><%= @opportunity.organization %></p>
+      </div>
+  <% end %>
+  <span class="block-toggle possible" data-target="#block0">It's a match <span class="fa fa-chevron-down"></span></span>
+  <div class="single-opp-block stealth" id="block0">
+
+
+    <% if @opportunity.country.present? %>
+        <div class="notice">
+          <strong>Country:</strong>
+          <p><%= @opportunity.country %></p>
+        </div>
+    <% end %>
+    <% if @opportunity.city.present? %>
+        <div class="notice">
+          <strong>City:</strong>
+          <p><%= @opportunity.city %></p>
+        </div>
+    <% end %>
+    <% if @opportunity.age_min.present? %>
+        <div class="notice">
+          <strong>Age min:</strong>
+          <p><%= @opportunity.age_min %></p>
+        </div>
+    <% end %>
+
+    <% if @opportunity.age_max.present? %>
+        <div class="notice">
+          <strong>Age max:</strong>
+          <p><%= @opportunity.age_max %></p>
+        </div>
+    <% end %>
+
+    <% if @opportunity.residence.present? %>
+        <div class="notice">
+          <strong>Residence:</strong>
+          <p><%= @opportunity.residence.class %></p>
+        </div>
+    <% end %>
+
+    <% if @opportunity.nationality.present? %>
+        <div class="notice">
+          <strong>Nationality:</strong>
+          <p><%= @opportunity.nationality %></p>
+        </div>
+    <% end %>
+
+  </div>
+  <span class="block-toggle not-possible" data-target="#block1">Requirements <span class="fa fa-chevron-down"></span></span>
+  <div class="single-opp-block" id="block1">
+    <% if @opportunity.cost.present? %>
+        <div class="notice">
+          <strong>Cost:</strong>
+          <p><%= @opportunity.cost %></p>
+        </div>
+    <% end %>
+
+
+
+
+    <% if @opportunity.language.present? %>
+        <div class="notice">
+          <strong>Language:</strong>
+          <p><%= @opportunity.language %></p>
+        </div>
+    <% end %>
+    <% if @opportunity.requirements_to_apply.present? %>
+        <div class="notice">
+          <strong>Requirements to apply:</strong>
+          <p><%= @opportunity.requirements_to_apply %></p>
+        </div>
+    <% end %>
+    <% if @opportunity.limitations.present? %>
+        <div class="notice">
+          <strong>Limitations:</strong>
+          <p><%= @opportunity.limitations %></p>
+        </div>
+    <% end %>
+
+    <% if @opportunity.preferences.present? %>
+        <div class="notice">
+          <strong>Preferences:</strong>
+          <p><%= @opportunity.preferences %></p>
+        </div>
+    <% end %>
+  </div>
+  <span class="block-toggle not-possible" data-target="#block2">Awards <span class="fa fa-chevron-down"></span></span>
+  <div class="single-opp-block" id="block2">
+    <% if @opportunity.award.present? %>
+        <div class="notice">
+          <strong>Award:</strong>
+          <p><%= @opportunity.award %></p>
+        </div>
+    <% end %>
+    <% if @opportunity.long_description.present? %>
+        <div class="notice">
+          <strong>Long description:</strong>
+          <p><%= @opportunity.long_description %></p>
+        </div>
+    <% end %>
+    <% if @opportunity.website.present? %>
+        <div class="notice">
+          <strong>Website:</strong>
+          <p><%= link_to @opportunity.website, @opportunity.website %></p>
+        </div>
+    <% end %>
+
+  </div>
+  <% if @opportunity.link_to_apply.present? %>
+      <div class="notice">
+        <!--<strong>Link to apply:</strong>-->
+        <p><a href="<%= @opportunity.link_to_apply %>" id="link-to-apply-single">Apply</a></p>
+      </div>
+  <% end %>
+  <% if user_signed_in? %>
+    <div class="notice">
+      <a href="#" class="toggle-watchlist <%= @added_to_watchlist ? 'added' : '' %>" data-id="<%= @opportunity.id %>">
+        <span class="add-to-watchlist"><span class="fa fa-heart"></span>Add to Watchlist</span>
+        <span class="remove-from-watchlist"><span class="fa fa-remove"></span>Remove from Watchlist</span>
+      </a>
+  </div>
+  <% end %>
+
+</div>

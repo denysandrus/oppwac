@@ -1,0 +1,210 @@
+<% if flash[:alert] %>
+    <%= flash[:alert] %>
+<% end %>
+<% if user_signed_in? %>
+    <% if !current_user.organization? && !current_user.nationality.present? && !current_user.date_of_birth.present? && !current_user.current_education_id.present? && !current_user.looking_education_id.present? %>
+        <div class="no-details">
+          <h2 id='missing-info'>Please <a href="/details/edit">set up</a> your personal info to find some
+            opportunities</h2>
+        </div>
+    <% elsif current_user.organization? %>
+        <div class="no-details">
+          <h2 id='missing-info'>You now can <a href="/opportunities/new">create</a> opportunities</h2>
+        </div>
+    <% elsif !current_user.organization? && current_user.nationality.present? && current_user.date_of_birth.present? && current_user.current_education_id.present? && current_user.looking_education_id.present? %>
+        <div class="pages-block">
+          <div class="dashboard-opportunities">
+            <% if !@opps.select { |opp| (Date.today..1.week.from_now).cover?(opp.deadline) }.blank? %>
+                <section class="one">
+                  <span>Days</span>
+                  <ul>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <li>5</li>
+                    <li>6</li>
+                    <li>7</li>
+                  </ul>
+                </section>
+            <% end %>
+            <% if !@opps.select { |opp| (1.week.from_now..1.month.from_now).cover?(opp.deadline) }.blank? %>
+                <section class="two">
+                  <span>Weeks</span>
+                  <ul>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                  </ul>
+                </section>
+            <% end %>
+            <% if !@opps.select { |opp| (1.month.from_now..3.month.from_now).cover?(opp.deadline) }.blank? %>
+                <section class="three">
+                  <span>Months</span>
+                  <ul>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                  </ul>
+                </section>
+            <% end %>
+            <% if !@opps.select { |opp| (3.month.from_now..6.month.from_now).cover?(opp.deadline) }.blank? %>
+                <section class="four">
+                  <span>Months</span>
+                  <ul>
+                    <li>4</li>
+                    <li>5</li>
+                    <li>6</li>
+                  </ul>
+                </section>
+            <% end %>
+            <% if !@opps.select { |opp| (6.month.from_now..9.month.from_now).cover?(opp.deadline) }.blank? %>
+                <section class="five">
+                  <span>Months</span>
+                  <ul>
+                    <li>7</li>
+                    <li>8</li>
+                    <li>9</li>
+                  </ul>
+                </section>
+            <% end %>
+            <% if !@opps.select { |opp| (9.month.from_now..12.month.from_now).cover?(opp.deadline) }.blank? %>
+                <section class="six">
+                  <span>Months</span>
+                  <ul>
+                    <li>10</li>
+                    <li>11</li>
+                    <li>12</li>
+                  </ul>
+                </section>
+            <% end %>
+            <% if !@opps.present? %>
+                <section class="one">
+                  <span>Days</span>
+                  <ul>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <li>5</li>
+                    <li>6</li>
+                    <li>7</li>
+                  </ul>
+                </section>
+            <% end %>
+          </div>
+        </div>
+
+
+        <div class="planet">
+          <a href="#" class="earth">All opportunities</a>
+          <ul class="opps-list">
+            <% @opps_in_watchlist.each do |opp| %>
+                <li class="applied">
+                  <%= link_to opp do %>
+                      <h3 class="opportunity-name"><%= opp.name %></h3>
+                  <% end %>
+                </li>
+            <% end %>
+          </ul>
+        </div>
+
+        <% @opps.each do |opp| %>
+            <div class="meteor-wrapper" data-deadline="<%= opp.deadline.strftime('%d%m%Y') %>">
+              <a href="#" class="meteor">
+                <h3 class="opportunity-name"><%= opp.name %></h3>
+              </a>
+              <div class="rollover">
+                <span class="program-type"><%= opp.opportunity_type %></span>
+                <p><%= opp.short_description %></p>
+                <span class="deadline">in <%= distance_of_time_in_words(Time.now, opp.deadline) %><%= Time.now.to_i > opp.deadline.to_i ? ' ago' : '' %></span>
+                <%= link_to opp, class: "apply-action" do %><span class="fa fa-info-circle"></span>
+                <% end %>
+              </div>
+            </div>
+            <table id="opps-table">
+              <tr>
+                <td data-th="Name: &nbsp;"><%= opp.name %></td>
+                <td data-th="Type: &nbsp;"><%= opp.opportunity_type %></td>
+                <td data-th="Description: &nbsp;"><%= opp.short_description %></td>
+                <td data-th="Deadline: &nbsp;"><%= distance_of_time_in_words(Time.now, opp.deadline) %><%= Time.now.to_i > opp.deadline.to_i ? ' ago' : '' %></td>
+              </tr>
+            </table>
+        <% end %>
+
+        <% if @opps.blank? %>
+            <div class="meteor-wrapper" data-deadline="<%= current_user.test_deadline.to_datetime.strftime('%d%m%Y') %>">
+              <a href="#" class="meteor">
+                <h3 class="opportunity-name">Test Opp</h3>
+              </a>
+              <div class="rollover">
+                <span class="program-type">Grant/Scholarship</span>
+                <p>This is an example Opp! Watch it for a few days to see what happens.</p>
+                <span class="deadline">in <%= distance_of_time_in_words(Time.now, current_user.test_deadline.to_datetime) %><%= Time.now.to_i > current_user.test_deadline.to_datetime.to_i ? ' ago' : '' %></span>
+                <%= link_to '/opportunity/testopp', class: "apply-action" do %><span class="fa fa-info-circle"></span>
+                <% end %>
+              </div>
+            </div>
+            <table id="opps-table">
+              <tr>
+                <td data-th="Name: &nbsp;">Test Opp</td>
+                <td data-th="Type: &nbsp;">Grant/Scholarship</td>
+                <td data-th="Description: &nbsp;">This is an example Opp! Watch it for a few days to see what
+                  happens.
+                </td>
+                <td data-th="Deadline: &nbsp;"><%= distance_of_time_in_words(Time.now, current_user.test_deadline.to_datetime) %><%= Time.now.to_i >  current_user.test_deadline.to_datetime.to_i ? ' ago' : '' %></td>
+              </tr>
+            </table>
+        <% end %>
+        <ul class="opps-list">
+          <% @opps_in_watchlist.each do |opp| %>
+              <li class="applied">
+                <%= link_to opp do %>
+                    <h3 class="opportunity-name"><%= opp.name %></h3>
+                <% end %>
+              </li>
+          <% end %>
+          <div>
+    <% end %>
+<% else %>
+
+    <div class="main-page-wrapper">
+      <h1><a href="#" class="logo"></a></h1>
+      <h2>World At Competition <span>the Universe of exchange programs</span></h2>
+      <% if !@show_variable %>
+          <div class="notice"></div>
+          <%= form_for(:user, :url => session_path(:user), :html => {:class => 'email-form'}) do |f| %>
+              <%= f.email_field :email, :placeholder => 'Email/Login', :class => 'email' %>
+              <%= f.password_field :password, :placeholder => 'Enter password', :class => 'password', :style => 'display: none;' %>
+              <%= f.submit 'Next', :class => 'submit' %>
+          <% end %>
+          <%= form_for(:user, :html => {:class => 'coupon-form'}) do |f| %>
+              <%= f.text_field :coupon, :placeholder => 'Enter your promo code' %>
+              <%= f.submit 'Next', :class => 'submit promo' %>
+          <% end %>
+          <br>
+          <%= link_to 'Partners', {action: 'partners'} %>
+      <% else %>
+          <span class="static-text">Coming soon</span>
+      <% end %>
+    </div>
+
+    <% if @featured_opportunity.present? %>
+        <div class="featured-opp" data-deadline="<%= @featured_opportunity.deadline.strftime('%d%m%Y') %>">
+          <a href="#" class="meteor">
+            <h3 class="opportunity-name"><%= @featured_opportunity.name %></h3>
+          </a>
+          <div class="rollover">
+            <span class="program-type"><%= @featured_opportunity.opportunity_type %></span>
+            <p><%= @featured_opportunity.short_description %></p>
+            <span class="deadline">in <%= distance_of_time_in_words(Time.now, @featured_opportunity.deadline) %><%= Time.now.to_i > @featured_opportunity.deadline.to_i ? ' ago' : '' %></span>
+            <%= link_to @featured_opportunity, class: "apply-action" do %>
+                <span class="fa fa-info-circle"></span>
+            <% end %>
+          </div>
+        </div>
+    <% end %>
+<% end %>
+</div>
+</ul>

@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: wacstartup
+  api_key: '713646859233413'
+  api_secret: 3gP8-EOSkgJVvT7svXtFzJiD0MM
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: wacstartup
+  api_key: '713646859233413'
+  api_secret: 3gP8-EOSkgJVvT7svXtFzJiD0MM
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: wacstartup
+  api_key: '713646859233413'
+  api_secret: 3gP8-EOSkgJVvT7svXtFzJiD0MM
+  enhance_image_tag: true
+  static_image_support: false

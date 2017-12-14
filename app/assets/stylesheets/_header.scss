@@ -1,0 +1,121 @@
+//navigation bar
+nav.navbar {
+  padding-top: 6px;
+  border: none;
+  background: #33344C !important;
+  //background: rgba(255, 255, 255, 0.03);
+  //background: none;
+  box-shadow: none;
+  .user-image {
+    margin-top: -2px;
+    margin-right: 10px;
+    width: 44px;
+    height: 44px;
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-position: center;
+    border-radius: 100%;
+    border: 2px solid rgba(255, 255, 255, .5);
+    &:hover {
+      border: 2px solid white;
+    }
+  }
+}
+
+.navigation {
+  display: flex;
+  //margin-top: -12px;
+  position: static;
+  float: right;
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  justify-content: center;
+  z-index: 110;
+  li {
+    position: relative;
+    display: inline-block;
+    margin: 8px;
+    text-align: center;
+  }
+  li:first-of-type, li:nth-of-type(2) {
+    border-radius: 100%;
+    background-color: rgba(255, 255, 255, 0.03);
+    cursor: pointer;
+    a {
+      display: block;
+      padding: 12px;
+    }
+    &:after {
+      content: "";
+      position: absolute;
+      top: -7px;
+      left: -7px;
+      display: block;
+      width: 58px;
+      height: 58px;
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      border-radius: 100%;
+      z-index: -1;
+      @include transition(all, .2s, ease);
+      transform: scale(.7);
+      opacity: 0;
+    }
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      &:after {
+        transform: scale(1);
+        opacity: 1;
+      }
+      .fa {
+        opacity: 1;
+        text-shadow: 0 0 20px #39ABD8;
+      }
+    }
+    .fa {
+      font-size: 20px;
+      height: 20px;
+      width: 20px;
+      color: white;
+      opacity: .3;
+    }
+  }
+}
+
+
+
+.navbar-default {
+  .navbar-brand {
+    @media (min-width: 768px) {
+      margin: 0 auto !important;
+    }
+    color: #918c8f;
+    text-shadow: none;
+    width: 320px;
+    margin: 0 auto;
+    text-align: center;
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    &:hover {
+      color: white;
+    }
+  }
+  .navbar-link,
+  .navbar-text,
+  .navbar-nav > li > a {
+    color: #918c8f;
+    text-shadow: none;
+    &:hover {
+      color: white;
+    }
+  }
+  .pull-right {
+    margin: 10px 0 0;
+  }
+}
+
+.navbar-fixed-top {
+  //z-index: auto;
+}

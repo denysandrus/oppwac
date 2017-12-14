@@ -1,0 +1,256 @@
+
+  <%= form_for @opportunity, :html => {:multipart => true} do |f| %>
+      <% if @opportunity.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@opportunity.errors.count, "error") %> prohibited this opportunity from being saved:</h2>
+
+            <ul>s
+              <% @opportunity.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+      <span class="warn-status"></span>
+
+
+      <div id="block1" class="opp-block signup-page opp-page">
+        <div class="field">
+          <%= f.label :name , 'Name *' %><br>
+          <%= f.text_field :name, required: true %>
+        </div>
+        <div class="field">
+          <%= f.label :organization, 'Organization *' %><br>
+          <%= f.text_field :organization, :value => current_user.name, required: true %>
+        </div>
+        <div class="field">
+          <%= f.label :opportunity_type, 'Opportunity type *' %><br>
+          <%= f.collection_select(:opportunity_type_id, OpportunityType.all, :id, :name, required: true) %>
+        </div>
+        <ul class="directions">
+          <li><span class="direction-link next" data-target="#block2">Next</span></li>
+        </ul>
+      </div>
+
+
+      <div id="block2" class="opp-block signup-page opp-page">
+        <div class="field">
+          <%= f.label :short_description, 'Short description *' %><br>
+          <%= f.text_field :short_description, :maxlength => 140 , required: true%>
+        </div>
+        <div class="field">
+          <%= f.label :country , 'Country *' %><br>
+          <%= f.country_select :country, required: true %>
+        </div>
+        <div class="field">
+          <%= f.label :city  %><br>
+          <%= f.text_field :city %>
+        </div>
+        <div class="field deadline-field">
+          <%= f.label :deadline, 'Deadline *' %><br>
+          <%= f.datetime_select :deadline, :start_year => Date.today.year, required: true  %>
+        </div>
+        <ul class="directions">
+          <li><span class="direction-link" data-target="#block1">Back</span></li>
+          <li><span class="direction-link next" data-target="#block3">Next</span></li>
+        </ul>
+      </div>
+
+      <div id="block3" class="opp-block signup-page opp-page">
+        <div class="field">
+          <%= f.label :age_min , 'Age Min *' %><br>
+          <%= f.number_field :age_min, :min => 7 , required: true%>
+        </div>
+        <div class="field">
+          <%= f.label :age_max , 'Age Max *'%><br>
+          <%= f.number_field :age_max , required: true%>
+        </div>
+        <div class="field">
+          <%= render :partial => 'countries', :locals=>{:f=>f, :val=>:residence} %>
+        </div>
+        <div class="field">
+          <%= render :partial => 'countries', :locals=>{:f=>f, :val=>:nationality} %>
+        </div>
+        <div class="field">
+          <%= f.label :education, 'Education *' %><br>
+          <%= f.collection_select(:education_id, Education.all, :id, :name, required: true) %>
+        </div>
+        <ul class="directions">
+          <li><span class="direction-link" data-target="#block2">Back</span></li>
+          <li><span class="direction-link next" data-target="#block4">Next</span></li>
+        </ul>
+      </div>
+
+      <div id="block4" class="opp-block signup-page opp-page">
+        <div class="field">
+          <%= f.label :cost , 'Cost *'%><br>
+          <%= f.collection_select(:cost_id, Cost.all, :id, :name, required: true) %>
+        </div>
+        <div class="field">
+          <%= render :partial => 'countries', :locals=>{:f=>f, :val=>:language} %>
+        </div>
+        <div class="field">
+          <%= f.label :long_description , 'Long description *'%><br>
+          <%= f.text_area :long_description, required: true %>
+        </div>
+
+        <div class="field">
+          <%= f.label :requirements_to_apply, 'Requirements to apply *' %><br>
+          <%= f.text_area :requirements_to_apply, required: true %>
+        </div>
+        <div class="field">
+          <%= f.label :award, 'Award *' %><br>
+          <%= f.text_area :award , required: true%>
+        </div>
+        <div class="field">
+          <%= f.label :limitations %><br>
+          <%= f.text_area :limitations %>
+        </div>
+        <div class="field">
+          <%= f.label :preferences %><br>
+          <%= f.text_area :preferences %>
+        </div>
+        <div class="field">
+          <%= f.label :website, 'Website *' %><br>
+          <%= f.text_field :website, required: true %>
+        </div>
+        <div class="field">
+          <%= f.label :link_to_apply, 'Link to Apply *' %><br>
+          <%= f.text_field :link_to_apply, required: true %>
+        </div>
+        <div class="field">
+          <%= f.label :picture %><br>
+          <%= f.file_field :picture %>
+          <%= f.hidden_field :picture_cache %>
+
+        </div>
+        <ul class="directions">
+          <li><span class="direction-link" data-target="#block3">Back</span></li>
+          <li><span class="direction-link next" data-target="#block5">Verify</span></li>
+        </ul>
+      </div>
+      <div id="block5" class="opp-block opp-page-container">
+
+          <div class="opportunity-img">
+            <div class="rotate-planet-big"></div>
+            <div class="rotate-planet-small"></div>
+
+                <div class="notice deadline-notice">
+                  <p><strong>Deadline: </strong> <span id="verify-deadline"></span></p>
+                </div>
+                <div class="opp-type">
+                  <span id="verify-opp-type"></span>
+                </div>
+
+            <div class="image opp-image-tag" id="verify-image">
+              <%# image_tag(@opportunity.picture_url, :id => "opportunity_image") if @opportunity.picture.present? %>
+            </div>
+          </div>
+
+
+
+
+
+          <div class="notice">
+            <h1 id="verify-name"></h1>
+          </div>
+              <div class="notice opp-org-notice">
+                <p> <strong>Organization: </strong><span id="verify-org"></span></p>
+              </div>
+          <span class="block-toggle possible" data-target="#block0">It's a match <span class="fa fa-chevron-down"></span></span>
+          <div class="single-opp-block stealth" id="block0">
+            <div class="notice">
+                  <strong>Country:</strong>
+                  <p id="verify-opp-country"></p>
+                </div>
+                <div class="notice">
+                  <strong>City:</strong>
+                  <p id="verify-city"></p>
+                </div>
+                <div class="notice">
+                  <strong>Age min:</strong>
+                  <p id="verify-age-min"></p>
+                </div>
+
+                <div class="notice">
+                  <strong>Age max:</strong>
+                  <p id="verify-age-max"></p>
+                </div>
+
+                <div class="notice">
+                  <strong>Residence:</strong>
+                  <p id="verify-residence"></p>
+                </div>
+
+                <div class="notice">
+                  <strong>Nationality:</strong>
+                  <p id="verify-nationality"></p>
+                </div>
+                <div class="notice">
+                  <strong>Education:</strong>
+                  <p id="verify-education"></p>
+                </div>
+
+          </div>
+          <span class="block-toggle not-possible" data-target="#block1">Requirements <span class="fa fa-chevron-down"></span></span>
+          <div class="single-opp-block" id="block1">
+                <div class="notice">
+                  <strong>Cost:</strong>
+                  <p id="verify-cost"></p>
+                </div>
+                <div class="notice">
+                  <strong>Language:</strong>
+                  <p id="verify-language"></p>
+                </div>
+                <div class="notice">
+                  <strong>Requirements to apply:</strong>
+                  <p id="verify-requirements"></p>
+                </div>
+                <div class="notice">
+                  <strong>Limitations:</strong>
+                  <p id="verify-limitations"></p>
+                </div>
+
+                <div class="notice">
+                  <strong>Preferences:</strong>
+                  <p id="verify-preferences"></p>
+                </div>
+          </div>
+          <span class="block-toggle not-possible" data-target="#block2">Awards <span class="fa fa-chevron-down"></span></span>
+          <div class="single-opp-block" id="block2">
+                <div class="notice">
+                  <strong>Award:</strong>
+                  <p id="verify-award"></p>
+                </div>
+                <div class="notice">
+                  <strong>Short description:</strong>
+                  <p  id="verify-short-desc"> </p>
+                </div>
+            <div class="notice">
+                  <strong>Long description:</strong>
+                  <p id="verify-long-description"></p>
+                </div>
+                <div class="notice">
+                  <strong>Website:</strong>
+                  <p>                  <a id="verify-website" href="#"></a>
+                  </p>
+                  </div>
+            <div class="notice">
+              <strong>Link to apply:</strong>
+              <p id="verify-link"></p>
+            </div>
+          </div>
+
+          <ul class="directions">
+            <li><span class="direction-link" data-target="#block4">Back</span></li>
+            <li><%= f.submit 'Verify', class: 'direction-link' %></li>
+          </ul>
+       </div>
+
+
+
+
+
+
+  <% end %>
+

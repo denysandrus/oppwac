@@ -1,0 +1,33 @@
+<%     @orgs = User.where(role_id: 2) %>
+<table id="admin-orgs" class="index_table organizations">
+  <thead >
+  <tr style="text-align: center; font-weight: 700">
+    <td>Id</td>
+    <td>Status</td>
+    <td>Organization name</td>
+    <td>Organization description</td>
+    <td>Country</td>
+    <td>Opportunity types</td>
+    <td>Representative</td>
+    <td>Representative email</td>
+    <td>Organization website/email</td>
+    <td>&nbsp;</td>
+  </tr>
+  </thead>
+  <% @orgs.each do |org| %>
+      <tr>
+        <td><%= org.id %></td>
+        <td><%= org.verification_status %></td>
+        <td><%= org.organization_name %></td>
+        <td><%= org.organization_description %></td>
+        <td><%= org.residence %></td>
+        <td><%= OpportunityType.find(org.organization_opportunities) %></td>
+        <td><%= org.name %></td>
+        <td><a href="mailto:<%= org.email %>"><%= org.email %></a></td>
+        <td><a href="<%= org.organization_website %>"><%= org.organization_website %></a></td>
+        <% if !org.verified? %>
+            <td><a href="#" class="verify" data-id="<%= org.id %>">VERIFY</a></td>
+        <% end %>
+      </tr>
+  <% end %>
+</table>

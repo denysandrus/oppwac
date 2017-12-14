@@ -1,0 +1,95 @@
+<p id="notice"><%= notice %></p>
+
+<div class="opportunity-img">
+  <div class="rotate-planet-big"></div>
+  <div class="rotate-planet-small"></div>
+  <div class="opp-type">
+    Grant/Scholarship
+  </div>
+  <div class="image opp-image">
+    <%= image_tag "waclogo.png" , :class => "opp-image" %>
+  </div>
+</div>
+<div class="opp-mobile-image">
+  <div class="image">
+    <%= image_tag "waclogo.png" , :class => "opp-image" %>
+  </div>
+</div>
+<div class="show-opportunity">
+  <% if user_signed_in? %>
+      <a href="#" class="toggle-watchlist <%= @added_to_watchlist ? 'added' : '' %>">
+        <span class="add-to-watchlist"><span class="fa fa-heart"></span>Add to Watchlist</span>
+        <span class="remove-from-watchlist"><span class="fa fa-remove"></span>Remove from Watchlist</span>
+      </a>
+  <% end %>
+  <h1>Test Opp</h1>
+  <div class="notice">
+    <strong>Organization:</strong>
+    <p>WAC</p>
+  </div>
+
+  <div class="notice">
+    <strong>Country:</strong>
+    <p>World</p>
+  </div>
+  <div class="notice">
+    <strong>Deadline:</strong>
+    <p><%= current_user.test_deadline %></p>
+  </div>
+  <div class="notice">
+    <strong>Age min:</strong>
+    <p>3</p>
+  </div>
+  <div class="notice">
+    <strong>Age max:</strong>
+    <p>99</p>
+  </div>
+  <div class="notice">
+    <strong>Residence:</strong>
+    <p>Planet Earth</p>
+  </div>
+  <div class="notice">
+    <strong>Nationality:</strong>
+    <p>Global Citizen</p>
+  </div>
+  <div class="notice">
+    <strong>Education:</strong>
+    <p>Any diploma?</p>
+  </div>
+  <div class="notice">
+    <strong>Cost:</strong>
+    <p>Free</p>
+  </div>
+  <div class="notice">
+    <strong>Language:</strong>
+    <p>Some Opps are not in English. Do you know other languages?</p>
+  </div>
+  <div class="notice">
+    <strong>Long description:</strong>
+    <p>Before you realize this Opp is really something worth of pursuing, you will be offered 2-tweet sized description
+      concluded directly by Organization. Isn't that exciting?</p>
+  </div>
+  <div class="notice">
+    <strong>Requirements to apply:</strong>
+    <p>To save your time, Organization will mention type of work to be done and necessary documents here.</p>
+  </div>
+  <div class="notice">
+    <strong>Award:</strong>
+    <p>What do you actually compete for?</p>
+  </div>
+  <div class="notice">
+    <strong>Limitations:</strong>
+    <p>Some Opps have limitations (maybe, you already participated and can't do that again). Don't waste time, know in
+      advance.</p>
+  </div>
+  <div class="notice">
+    <strong>Website:</strong>
+    <p><a href="http://worldatcompetition.com/">http://worldatcompetition.com/</a></p>
+  </div>
+  <br>
+  <div class="notice">
+    <!--<strong>Link to apply:</strong>-->
+    <p><a href="http://worldatcompetition.com/" id="link-to-apply-single">Apply</a></p>
+  </div>
+  <br>
+</div>

@@ -1,0 +1,128 @@
+<table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="bodyTable">
+  <tr>
+    <td align="center" valign="top">
+      <table border="0" cellpadding="0" cellspacing="0" width="600" id="emailContainer"
+             style="font-family: 'Georgia';">
+        <tr>
+          <td align="center" valign="top">
+            <table border="0" cellpadding="15" cellspacing="0" width="100%" id="emailHeader"
+                   style="font-family: 'Georgia'">
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td align="center" valign="top"
+                    style="
+                    color: #000;
+                        font-size: 22px;
+                        border-bottom: 2px solid #00B8FF;
+                        font-weight: 700;
+                    ">WAC
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr style="
+        color: #fff;
+            font-size: 22px;
+            ;
+            font-weight: 700;
+        ">
+          <td align="center" valign="top">
+            <table border="0" cellpadding="10" cellspacing="10" width="100%" id="emailBody"
+                   style="background: rgba(  238, 238, 238, .1); color:  #515266; font-size: 18px; ">
+
+              <tr>
+                <td></td>
+                <td></td>
+                <td align="left" valign="top" colspan="5">
+                  Dear <%= @user.name %>
+                </td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr> <td></td>
+                <td></td>
+
+                <td align="left" valign="top" colspan="5">
+                  The Opp below just matched with your profile. If not you, who is going to act?
+                </td> <td></td>
+                <td></td>
+
+              </tr>
+              <tr> <td></td>
+                <td></td>
+
+                <td align="left" valign="top" colspan="5">
+                  <table border="0" cellpadding="5px" cellspacing="2px">
+                    <tr>
+                      <td>Name</td>
+                    </tr>
+                    <tr>
+                      <td><%= @opp.name %></td>
+                    </tr>
+                    <tr>
+                      <td>Organization</td>
+                    </tr>
+                    <tr>
+                      <td><%= @opp.organization %></td>
+                    </tr>
+                    <tr>
+                      <td>Description</td>
+                    </tr>
+                    <tr>
+                      <td><%= @opp.short_description %></td>
+                    </tr>
+                    <tr>
+                      <td>Deadline</td>
+                    </tr>
+                    <tr>
+                      <td><%= @opp.deadline %></td>
+                    </tr>
+                  </table>                </td> <td></td>
+                <td></td>
+
+              </tr>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td align="center" valign="top" style="color: #000; border-bottom: 2px solid #00B8FF">
+                  <%= link_to @opp, {:style => 'display: block;  max-width:60%; margin: 0 auto; line-height: 32px; text-decoration: none; '} do %>
+                      See more
+                  <% end %>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td align="center" valign="top">
+            <table border="0" cellpadding="10" cellspacing="0" width="100%" id="emailFooter">
+              <tr>
+                <td align="center" valign="top" style="color: #515266   ">
+                  Sincerely, WAC team
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+
+

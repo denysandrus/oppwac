@@ -1,0 +1,27 @@
+<div class="countries-block">
+  <ul class="blocks">
+    <span id="data-countries"
+      data-world_countries="<%= countries[:world_countries].to_json %>"
+      data-asian_countries="<%= countries[:asian_countries].to_json %>"
+      data-european_countries="<%= countries[:european_countries].to_json %>"
+      data-african_countries="<%= countries[:african_countries].to_json %>"
+      data-na_countries="<%= countries[:na_countries].to_json %>"
+      data-sa_countries="<%= countries[:sa_countries].to_json %>"
+      data-oecd_countries="<%= countries[:oecd_countries].to_json %>"
+      data-asean_countries="<%= countries[:asean_countries].to_json %>"
+    >
+
+    </span>
+    <%= f.hidden_field val, class: 'stealth-country' %>
+    <% world_blocks.each do |b| %>
+      <li data-block="<%= b[0] %>" data-countries="<%= b[1] %>">
+        <span><%= b[0] %></span>
+        <ul class="block-countries">
+        <% countries[b[1]].each do |c| %>
+          <li data-country="<%= c[:code] %>" class="active"><%= c[:name] %></li>
+        <% end %>
+        </ul>
+      </li>
+    <% end %>
+  </ul>
+</div>

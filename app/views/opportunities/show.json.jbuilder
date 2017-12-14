@@ -1,0 +1,1 @@
+json.extract! @opportunity, :id, :name, :organization, :opportunity_type, :short_description, :country, :city, :deadline, :age_min, :age_max, :residence, :nationality, :education, :cost, :language, :long_description, :requirements_to_apply, :award, :limitations, :preferences, :website, :link_to_apply, :created_at, :updated_at

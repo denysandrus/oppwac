@@ -1,0 +1,71 @@
+<div class="signup-page">
+  <h2>Tell us a little about yourself.</h2>
+
+  <%= form_for(@user, url: details_update_path, html: {class: 'short-user-info',  method: :put }) do |f| %>
+
+      <% if @user.role.nil? %>
+          <div class="field">
+             <%= f.label :role %><br> 
+            <%= f.collection_radio_buttons :role_id, Role.all, :id, :name %> <br>
+          </div>  
+          <% end %>
+
+          <% unless @user.role.nil? %>
+
+            <% if @user.role.name == 'organization' %>
+              <div class="field">
+                 <%= f.label :name, 'Organization name' %>
+                <%= f.text_field :name, autofocus: true %> 
+              </div>
+
+              <div class="field">
+                 <%= f.label :organization_description %>
+                <%= f.text_area :organization_description %> 
+              </div>
+
+              <div class="field">
+                <%= f.label :picture, 'Logo' %>
+                <%= f.file_field :picture %>
+                <%= f.hidden_field :picture_cache %>
+              </div>
+            <% end %>
+
+            <% if @user.role.name == 'individual' %>
+              <div class="field">
+                <%= f.label :date_of_birth %><br>
+                <%= f.date_select :date_of_birth, :start_year => 1970, :end_year => Date.today.year %>
+              </div>
+
+              <div class="field">
+                <%= f.label :nationality %><br>
+                <%= f.country_select :nationality %>
+              </div>
+
+              <div class="field">
+                <%= f.label :residence %><br>
+                <%= f.country_select :residence %>
+              </div>
+
+              <div class="field">
+                <%= f.label :current_education %><br>
+                <%= f.collection_select(:current_education_id, Education.all, :id, :name, prompt: true) %>
+              </div>
+
+              <div class="field">
+                <%= f.label :looking_education %><br>
+                <%= f.collection_select(:looking_education_id, Education.all, :id, :name, prompt: true) %>
+              </div>
+              <% end %>
+            <% end %>
+
+          <div class="actions">
+            <%= f.submit "Save" %>
+          </div>
+  <% end %>
+
+  <script>
+    $(document).on('submit', '.short-user-info', function(){$('.actions').after('<span> Your changes have been saved! </span>');
+    })
+  </script>
+
+</div>

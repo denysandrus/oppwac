@@ -1,0 +1,272 @@
+// Place all the styles related to the Home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.main-page-wrapper {
+  display: block;
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+  padding-top: 50px;
+  padding-bottom: 80px;
+  text-align: center;
+  z-index: 100;
+
+  @media screen and (max-width: 480px) {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  h1 {
+    height: 200px;
+    width: 200px;
+    margin: 0 auto 30px;
+
+    @media screen and (max-width: 480px) {
+      height: 150px;
+      width: 150px;
+      margin-top: 25px;
+    }
+
+    border-radius: 100%;
+    border: 10px solid white;
+
+    @include transition(all, 0.3s, ease);
+
+    &:hover {
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      -webkit-transform: translateY(-5px);
+      -ms-transform: translateY(-5px);
+      transform: translateY(-5px);
+    }
+  }
+
+  .logo {
+    display: block;
+    height: 100%;
+    background: image_url("waclogo.png") no-repeat;
+    background-size: contain;
+  }
+
+  h2 {
+    font: 400 25px 'Fredoka One', cursive;
+    color: white;
+    text-align: center;
+
+    span {
+      display: block;
+      font: 14px Gothic, Arial, sans-serif;
+    }
+
+    @media screen and (max-width: 480px) {
+      font: 400 20px 'Fredoka One', cursive !important;
+    }
+  }
+
+  .notice {
+    margin: 25px 0;
+  }
+
+  .static-text {
+    display: inline-block;
+    margin: 40px auto;
+    padding: 8px 15px;
+    width: 200px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.3);
+    border: none;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+
+  .email-form, .coupon-form {
+    text-align: center;
+
+    input[type="email"], input[type="text"], input[type="password"] {
+      display: block;
+      margin: 40px auto;
+      padding: 8px 15px;
+      width: 200px;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      background-color: rgba(255, 255, 255, 0.05);
+
+      &:focus {
+        outline: none;
+        background-color: rgba(0, 0, 0, 0.15);
+      }
+    }
+
+    ::-webkit-input-placeholder {
+      margin-left: 10px;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    ::-moz-placeholder {
+      margin-left: 10px;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    /* Firefox 19+ */
+    :-moz-placeholder {
+      margin-left: 10px;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    /* Firefox 18- */
+    :-ms-input-placeholder {
+      margin-left: 10px;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    .submit{
+      margin-top: 10px;
+      padding: 8px 35px;
+      font: 600 18px 'Fredoka One', cursive;
+      color: white;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 10px;
+      background-color: #3D3E54;
+      cursor: pointer;
+
+      @include transition(all, 0.3s, ease);
+
+      &:hover {
+        -webkit-transform: translateY(-3px);
+        -ms-transform: translateY(-3px);
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      }
+
+      @media screen and (max-width: 480px) {
+        font: 600 14px 'Fredoka One', cursive;
+        margin-top: 3px;
+      }
+    }
+  }
+
+  .coupon-form {
+    .submit {
+      margin-top: 0;
+    }
+
+    display: none;
+  }
+}
+
+.no-details {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  #missing-info {
+    max-width: 90%;
+    font-family: 'Gothic';
+    font-size: 24px;
+
+    a {
+      font-size: 24px;
+    }
+  }
+}
+
+.container {
+  height: 100%;
+}
+
+#partners {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @media screen and (max-width: 768px) {
+    display: block;
+  }
+  li {
+    a:nth-of-type(2) {
+      text-transform: uppercase;
+      line-height: 36px;
+    }
+    text-align: center;
+    width: 33%;
+    float: left;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 40px;
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+    position: relative;
+    -webkit-transition: all .9s ease;
+    -moz-transition: all .9s ease;
+    -ms-transition: all .9s ease;
+    -o-transition: all .9s ease;
+    transition: all .9s ease;
+    @media screen and (max-width: 768px) {
+      width: 100%;
+      padding: 0px;
+      margin: 0px;
+    }
+    &:first-of-type {
+      -webkit-filter: grayscale(100%) brightness(150%);
+      filter: grayscale(100%) brightness(150%);
+      &:hover {
+        -webkit-filter: brightness(150%);
+        filter: brightness(150%);
+      }
+    }
+    &:hover {
+      -webkit-filter: none;
+      filter: none;
+      -webkit-transition: all .9s ease;
+      -moz-transition: all .9s ease;
+      -ms-transition: all .9s ease;
+      -o-transition: all .9s ease;
+      transition: all .9s ease;
+
+    }
+    .img-link {
+      text-decoration: none;
+      display: block;
+      width: 100%;
+      border: none;
+      position: relative;
+      margin: 20px 0 40px;
+      &:hover {
+        text-decoration: none;
+      }
+      img {
+        width: 100%;
+      }
+
+    }
+  }
+}
+
+.partners-box {
+  flex-wrap: wrap;
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#partners-heading {
+  text-align: center;
+  text-transform: uppercase;
+  font-family: 'Gothic';
+  width: 100%;
+  margin-bottom: -250px;
+  @media screen and (max-width: 768px) {
+    margin-bottom: 0;
+  }
+}
